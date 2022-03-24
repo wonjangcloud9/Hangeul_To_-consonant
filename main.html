@@ -11,6 +11,7 @@
       <input required maxlength="15" type="text" placeholder="add your name" />
       <button>Push</button>
     </form>
+    <div id="here"></div>
   </body>
   <script>
     const chosungList = [
@@ -99,12 +100,15 @@
       test = Array.from(loginInput.value);
       console.log(test);
       loginInput.value = "";
-
+      box = document.getElementById("here");
       for (let i = 0; i < test.length; i++) {
         let unicode = test[i].charCodeAt(0) - 0xac00;
-        jongsung = unicode % 28; // 종성
-        joongsung = ((unicode - jongsung) / 28) % 21; // 중성
-        chosung = ((unicode - jongsung) / 28 - joongsung) / 21; // 종성
+        jongsung = unicode % 28;
+        joongsung = ((unicode - jongsung) / 28) % 21;
+        chosung = ((unicode - jongsung) / 28 - joongsung) / 21;
+        baby = document.createElement("span");
+        baby.innerHTML = chosungList[chosung];
+        box.appendChild(baby);
 
         console.log(
           "초성:" +
