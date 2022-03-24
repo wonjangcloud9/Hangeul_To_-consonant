@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>한글로 초성 추출</title>
+  </head>
+  <body>
+    <form id="login-form">
+      <input required maxlength="15" type="text" placeholder="add your name" />
+      <button>Push</button>
+    </form>
+  </body>
+  <script>
+    const chosungList = [
+      "ㄱ",
+      "ㄲ",
+      "ㄴ",
+      "ㄷ",
+      "ㄸ",
+      "ㄹ",
+      "ㅁ",
+      "ㅂ",
+      "ㅃ",
+      "ㅅ",
+      "ㅆ",
+      "ㅇ",
+      "ㅈ",
+      "ㅉ",
+      "ㅊ",
+      "ㅋ",
+      "ㅌ",
+      "ㅍ",
+      "ㅎ",
+    ];
+    const joongsungLIst = [
+      "ㅏ",
+      "ㅐ",
+      "ㅑ",
+      "ㅒ",
+      "ㅓ",
+      "ㅔ",
+      "ㅕ",
+      "ㅖ",
+      "ㅗ",
+      "ㅘ",
+      "ㅙ",
+      "ㅚ",
+      "ㅛ",
+      "ㅜ",
+      "ㅝ",
+      "ㅞ",
+      "ㅟ",
+      "ㅠ",
+      "ㅡ",
+      "ㅢ",
+      "ㅣ",
+    ];
+    const jongsungList = [
+      "",
+      "ㄱ",
+      "ㄲ",
+      "ㄳ",
+      "ㄴ",
+      "ㄵ",
+      "ㄶ",
+      "ㄷ",
+      "ㄹ",
+      "ㄺ",
+      "ㄻ",
+      "ㄼ",
+      "ㄽ",
+      "ㄾ",
+      "ㄿ",
+      "ㅀ",
+      "ㅁ",
+      "ㅂ",
+      "ㅄ",
+      "ㅅ",
+      "ㅆ",
+      "ㅇ",
+      "ㅈ",
+      "ㅊ",
+      "ㅋ",
+      "ㅌ",
+      "ㅍ",
+      "ㅎ",
+    ];
+
+    let chosung, joongsung, jongsung;
+    const test = "밥";
+    let unicode = test.charCodeAt(0) - 0xac00;
+    jongsung = unicode % 28; // 종성
+    joongsung = ((unicode - jongsung) / 28) % 21; // 중성
+    chosung = ((unicode - jongsung) / 28 - joongsung) / 21; // 종성
+
+    console.log(
+      "초성:" +
+        chosungList[chosung] +
+        "\n" +
+        "중성:" +
+        joongsungLIst[joongsung] +
+        "\n" +
+        "종성:" +
+        jongsungList[jongsung]
+    );
+
+    const loginInput = document.querySelector("#login-form input");
+    const loginButton = document.querySelector("#login-form button");
+
+    function loginButtonClick() {
+      console.log(loginInput.value);
+    }
+
+    loginButton.addEventListener("click", loginButtonClick);
+    console.log(
+      "초성:" +
+        chosungList[chosung] +
+        "\n" +
+        "중성:" +
+        joongsungLIst[joongsung] +
+        "\n" +
+        "종성:" +
+        jongsungList[jongsung]
+    );
+  </script>
+</html>
