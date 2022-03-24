@@ -87,42 +87,38 @@
       "ㅍ",
       "ㅎ",
     ];
-
     let chosung, joongsung, jongsung;
-    const test = "밥";
-    let unicode = test.charCodeAt(0) - 0xac00;
-    jongsung = unicode % 28; // 종성
-    joongsung = ((unicode - jongsung) / 28) % 21; // 중성
-    chosung = ((unicode - jongsung) / 28 - joongsung) / 21; // 종성
-
-    console.log(
-      "초성:" +
-        chosungList[chosung] +
-        "\n" +
-        "중성:" +
-        joongsungLIst[joongsung] +
-        "\n" +
-        "종성:" +
-        jongsungList[jongsung]
-    );
+    let test;
 
     const loginInput = document.querySelector("#login-form input");
     const loginButton = document.querySelector("#login-form button");
 
     function loginButtonClick() {
-      console.log(loginInput.value);
+      event.preventDefault();
+
+      test = Array.from(loginInput.value);
+      console.log(test);
+      loginInput.value = "";
+
+      for (let i = 0; i < test.length; i++) {
+        let unicode = test[i].charCodeAt(0) - 0xac00;
+        jongsung = unicode % 28; // 종성
+        joongsung = ((unicode - jongsung) / 28) % 21; // 중성
+        chosung = ((unicode - jongsung) / 28 - joongsung) / 21; // 종성
+
+        console.log(
+          "초성:" +
+            chosungList[chosung] +
+            "\n" +
+            "중성:" +
+            joongsungLIst[joongsung] +
+            "\n" +
+            "종성:" +
+            jongsungList[jongsung]
+        );
+      }
     }
 
     loginButton.addEventListener("click", loginButtonClick);
-    console.log(
-      "초성:" +
-        chosungList[chosung] +
-        "\n" +
-        "중성:" +
-        joongsungLIst[joongsung] +
-        "\n" +
-        "종성:" +
-        jongsungList[jongsung]
-    );
   </script>
 </html>
